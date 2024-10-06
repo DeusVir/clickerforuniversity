@@ -26,6 +26,11 @@
     <script>
         let score = 0;
 
+        window.Telegram.WebApp.onData((data) => {
+          score = parseInt(data);
+          document.getElementById('score').innerText = score;
+        });
+
         function clickHamster() {
             score++;
             document.getElementById('score').innerText = score;
