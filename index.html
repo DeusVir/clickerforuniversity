@@ -22,22 +22,13 @@
     <h1>Hamster Clicker</h1>
     <div id="hamster" onclick="clickHamster()">🐹</div>
     <p>Score: <span id="score">0</span></p>
-    <button onclick="saveScore()">Save Score</button>
 
     <script>
         let score = 0;
-        if (localStorage.getItem('clicks')) {
-            score = parseInt(localStorage.getItem('clicks'));
-            document.getElementById('score').innerText = score;
-        }
 
         function clickHamster() {
             score++;
             document.getElementById('score').innerText = score;
-            localStorage.setItem('clicks', score);
-        }
-
-        function saveScore() {
             window.Telegram.WebApp.sendData(score.toString());
         }
     </script>
