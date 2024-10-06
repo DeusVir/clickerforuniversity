@@ -25,12 +25,20 @@
 
     <script>
         let score = 0;
+        if (localStorage.getItem('clicks')) {
+            score = parseInt(localStorage.getItem('clicks'));
+            document.getElementById('score').innerText = score;
+        }
 
         function clickHamster() {
             score++;
             document.getElementById('score').innerText = score;
-            window.Telegram.WebApp.sendData(score);
+            localStorage.setItem('clicks', score);
         }
+
+        window.addEventListener('beforeunload', function(event) {
+            window.Telegram.WebApp.sendData(score.toString());
+        });
     </script>
 </body>
 </html>
