@@ -20,7 +20,7 @@
 </head>
 <body>
     <h1>Hamster Clicker</h1>
-    <div id="hamster" onclick="clickHamster()">🐹🐹</div>
+    <div id="hamster" onclick="clickHamster()">🐹</div>
     <p>Score: <span id="score">0</span></p>
 
     <script>
@@ -29,11 +29,13 @@
         window.Telegram.WebApp.onData((data) => {
           score = parseInt(data);
           document.getElementById('score').innerText = score;
+          console.log(`Received initial data: ${data}`);
         });
 
         function clickHamster() {
             score++;
             document.getElementById('score').innerText = score;
+            console.log(`Sending data: ${score}`);
             window.Telegram.WebApp.sendData(score.toString());
         }
     </script>
